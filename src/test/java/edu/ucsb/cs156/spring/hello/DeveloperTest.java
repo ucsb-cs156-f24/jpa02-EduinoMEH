@@ -3,6 +3,7 @@ package edu.ucsb.cs156.spring.hello;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.beans.Transient;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
@@ -30,7 +31,20 @@ public class DeveloperTest {
         assertEquals("EduinoMEH", Developer.getGithubId());
     }
 
-    // TODO: Add additional tests as needed to get to 100% jacoco line coverage, and
-    // 100% mutation coverage (all mutants timed out or killed)
+    @Test
+    public void getTeam_returns_correct_team_name() {
+        Team team = Developer.getTeam();
+        assertEquals("f24-02", team.getName());
+    }
 
+    @Test
+    public void getTeam_returns_team_with_correct_members() {
+        Team team = Developer.getTeam();
+        assertTrue(team.getMembers().contains("Edwin"), "Team should contain Edwin");
+        assertTrue(team.getMembers().contains("Jakob"), "Team should contain Jakob");
+        assertTrue(team.getMembers().contains("Jeffery"), "Team should contain Jeffery");
+        assertTrue(team.getMembers().contains("Leo"), "Team should contain Leo");
+        assertTrue(team.getMembers().contains("Rushil"), "Team should contain Rushil");
+        assertTrue(team.getMembers().contains("Ved"), "Team should contain Ved");
+    }
 }
